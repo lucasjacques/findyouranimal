@@ -16,18 +16,26 @@ var animals = new Array();
 var quests = new Array();
 var atual = new Quest();
 
+var userInterface, text1, btnOk, btnYes, btnNo;
+
 window.onload = load_default();
 
 function do_start() {
 	atual = quests[1];
-	document.getElementById("userInterface").style.width = "150px";
-	document.getElementById("text1").textContent = atual.txt;
-	document.getElementById("btnOk").style.display = "none";
-	document.getElementById("btnYes").style.display = "block";
-	document.getElementById("btnNo").style.display = "block";
+	userInterface.style.width = "150px";
+	txt1.textContent = atual.txt;
+	btnOk.style.display = "none";
+	btnYes.style.display = "block";
+	btnNo.style.display = "block";
 }
 
 function load_default() {
+	userInterface = document.getElementById("userInterface");
+	text1 = document.getElementById("text1");
+	btnOk = document.getElementById("btnOk");
+	btnYes = document.getElementById("btnYes");
+	btnNo = document.getElementById("btnNo");
+
 	var defaultAnimals = ["whale", "fish", "snake"];
 	var defaultQuestions = ["Does this animal live in the earth?", "Does this animal live in the water?"];
 	
@@ -57,17 +65,17 @@ function do_yes() {
 		atual = atual.yesResult;
 
 		//visual
-		document.getElementById("text1").textContent = atual.txt;
+		txt1.textContent = atual.txt;
 	}
 
 	//animal
 	else {
 
 		//visual
-		document.getElementById("text1").textContent = "Hooray! I got it! Lets play again?";
+		txt1.textContent = "Hooray! I got it! Lets play again?";
 		document.getElementById("btnAgain").style.display = "block";
-		document.getElementById("btnYes").style.display = "none";
-		document.getElementById("btnNo").style.display = "none";
+		btnYes.style.display = "none";
+		btnNo.style.display = "none";
 	};
 }
 
@@ -79,15 +87,15 @@ function do_no() {
 			atual = atual.noResult;
 
 			//visual
-			document.getElementById("text1").textContent = atual.txt;
+			txt1.textContent = atual.txt;
 			break;
 
 			case 'undefined':
 
 			//visual
-			document.getElementById("text1").textContent = "I couldn't find your animal. What animal did you think?";
-			document.getElementById("btnYes").style.display = "none";
-			document.getElementById("btnNo").style.display = "none";
+			txt1.textContent = "I couldn't find your animal. What animal did you think?";
+			btnYes.style.display = "none";
+			btnNo.style.display = "none";
 			document.getElementById("animName").style.display = "block";
 			document.getElementById("btnReady").style.display = "block";
 			break;
@@ -99,9 +107,9 @@ function do_no() {
 
 		
 		//visual
-		document.getElementById("text1").textContent = "I couldn't find your animal. What animal did you think?";
-		document.getElementById("btnYes").style.display = "none";
-		document.getElementById("btnNo").style.display = "none";
+		txt1.textContent = "I couldn't find your animal. What animal did you think?";
+		btnYes.style.display = "none";
+		btnNo.style.display = "none";
 		document.getElementById("animName").style.display = "block";
 		document.getElementById("textDiff").textContent = "Difference from a " + atual.animalName + ": ";
 		document.getElementById("animDiff").style.display = "block";
@@ -111,10 +119,10 @@ function do_no() {
 
 function do_again() {
 	//visual
-	document.getElementById("userInterface").style.width = "100px";
-	document.getElementById("text1").textContent = "Think in an animal and I'll try to guess it";
+	userInterface.style.width = "100px";
+	txt1.textContent = "Think in an animal and I'll try to guess it";
 	document.getElementById("btnAgain").style.display = "none";
-	document.getElementById("btnOk").style.display = "block";
+	btnOk.style.display = "block";
 }
 
 function do_ready() {
